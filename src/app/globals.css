@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+/* Custom theme variables */
+@theme {
+  /* Neon green accent color */
+  --color-neon: #b6ff00;
+  --color-neon-dark: #9ae600;
+  --color-neon-light: #d4ff66;
+  
+  /* Custom background colors */
+  --color-cyber-black: #0a0a0a;
+  --color-cyber-dark: #111111;
+  --color-cyber-gray: #1a1a1a;
+}
+
+/* Base styles */
+* {
+  @apply box-border;
+}
+
+html {
+  @apply scroll-smooth;
+}
+
+body {
+  @apply bg-black text-white antialiased;
+  font-family: var(--font-inter);
+}
+
+/* Grid background pattern */
+.grid-background {
+  background-image: 
+    linear-gradient(rgba(182, 255, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(182, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* Glow effects */
+.glow-neon {
+  box-shadow: 0 0 20px rgba(182, 255, 0, 0.3);
+}
+
+.glow-neon-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-neon-hover:hover {
+  box-shadow: 0 0 30px rgba(182, 255, 0, 0.5);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b6ff00;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(182, 255, 0, 0.3);
+  color: white;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #ffffff 0%, #b6ff00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
