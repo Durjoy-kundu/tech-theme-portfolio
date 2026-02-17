@@ -40,8 +40,20 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center pt-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
     >
+      {/* Enhanced Background Grid Pattern */}
+      <div 
+        className="absolute inset-0 -z-10"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at center, rgba(163, 230, 53, 0.15) 0%, transparent 70%),
+            linear-gradient(to right, rgba(182, 255, 0, 0.1) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(182, 255, 0, 0.1) 1px, transparent 1px)
+          `,
+          backgroundSize: '100% 100%, 30px 30px, 30px 30px',
+        }}
+      />
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Side - Content */}
@@ -148,31 +160,8 @@ export default function Hero() {
             className="relative"
           >
             {/* 3D Globe */}
-            <div className="w-full aspect-square max-w-lg mx-auto relative">
+            <div className="w-full aspect-square max-w-xl mx-auto relative p-4">
               <Globe3D />
-
-              {/* Profile Card */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1 }}
-                className="absolute bottom-8 right-0 bg-black/80 backdrop-blur-md border border-[#b6ff00]/30 rounded-lg p-4 glow-neon"
-              >
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-[#b6ff00] to-[#9ae600] rounded-full flex items-center justify-center text-black font-bold text-xl">
-                    BS
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-white">
-                      Badhan Sen
-                    </div>
-                    <div className="flex items-center space-x-1 text-xs text-gray-400">
-                      <MapPin className="w-3 h-3" />
-                      <span>San Francisco, CA</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
