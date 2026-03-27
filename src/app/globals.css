@@ -27,6 +27,11 @@ body {
   font-family: var(--font-inter);
 }
 
+/* Apply Oswald font to all headers */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-oswald), sans-serif;
+}
+
 /* Grid background pattern */
 .grid-background {
   background-image: 

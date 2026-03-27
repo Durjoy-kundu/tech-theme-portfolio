@@ -4,15 +4,14 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Calendar, MapPin } from "lucide-react";
-import SectionWrapper from "./SectionWrapper";
 
 const experiences = [
   {
-    company: "TechCorp Solutions",
-    position: "Senior Software Engineer",
-    period: "January 2022 - Present",
-    location: "San Francisco, CA",
-    type: "CURRENT POSITION",
+    company: "Green Compare Ltd",
+    position: "Junior Software Engineer",
+    period: "Nov 2025 - Present",
+    location: "Dhaka, Bangladesh",
+    type: "Full-time",
     description:
       "Leading development of cloud-native applications using microservices architecture. Mentoring junior developers and establishing best practices.",
     achievements: [
@@ -20,37 +19,7 @@ const experiences = [
       "Reduced infrastructure costs by 40% through optimization",
       "Led team of 5 developers in agile environment",
     ],
-    technologies: ["React", "Node.js", "AWS", "Docker", "PostgreSQL"],
-  },
-  {
-    company: "Digital Innovations Inc",
-    position: "Full Stack Developer",
-    period: "March 2020 - December 2021",
-    location: "Remote",
-    type: "PAST ROLE",
-    description:
-      "Developed and maintained multiple client projects using modern web technologies. Collaborated with cross-functional teams.",
-    achievements: [
-      "Built 10+ production-ready web applications",
-      "Improved application performance by 60%",
-      "Implemented CI/CD pipelines reducing deployment time by 70%",
-    ],
-    technologies: ["Vue.js", "Express", "MongoDB", "Redis", "Azure"],
-  },
-  {
-    company: "StartupXYZ",
-    position: "Software Engineer",
-    period: "June 2019 - February 2020",
-    location: "New York, NY",
-    type: "PAST ROLE",
-    description:
-      "Early-stage startup experience building MVP products. Wore multiple hats and contributed to product decisions.",
-    achievements: [
-      "Developed MVP from scratch in 3 months",
-      "Integrated payment systems and third-party APIs",
-      "Implemented responsive designs for mobile and web",
-    ],
-    technologies: ["React", "Firebase", "Stripe", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "React Native", "Docker", "PostgreSQL"],
   },
 ];
 
@@ -59,84 +28,106 @@ export default function Experience() {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <SectionWrapper
-      id="experience"
-      title="MISSION LOG"
-      subtitle="Professional journey and career milestones"
-    >
-      <div ref={ref} className="space-y-8">
-        {experiences.map((exp, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            className="relative"
-          >
-            {/* Timeline dot */}
-            <div className="absolute left-0 top-0 w-4 h-4 bg-[#b6ff00] rounded-full glow-neon hidden lg:block" />
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12 flex items-center gap-6"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-wide whitespace-nowrap">
+            <span className="text-white">MISSION </span>
+            <span className="text-[#b6ff00]">LOG</span>
+          </h2>
+          {/* Horizontal dashed line */}
+          <div className="flex-1 border-t-2 border-dashed border-[#b6ff00]/50" />
+        </motion.div>
 
-            <div className="lg:ml-12 bg-white/5 border border-white/10 rounded-xl p-6 hover:border-[#b6ff00]/30 transition-all duration-300">
-              {/* Header */}
-              <div className="flex flex-wrap items-start justify-between gap-4 mb-4">
-                <div className="flex-1">
-                  <div className="inline-block px-3 py-1 bg-[#b6ff00]/10 border border-[#b6ff00]/30 rounded-full text-xs text-[#b6ff00] font-mono mb-3">
-                    {exp.type}
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-1">
-                    {exp.position}
+        {/* Timeline */}
+        <div ref={ref} className="relative">
+          {/* Vertical dotted line */}
+          <div
+            className="absolute left-[11px] top-0 bottom-0 w-[2px] hidden sm:block"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(to bottom, rgba(182,255,0,0.4) 0px, rgba(182,255,0,0.4) 6px, transparent 6px, transparent 12px)",
+            }}
+          />
+
+          <div className="space-y-10">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -40 }}
+                animate={
+                  isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }
+                }
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="relative flex gap-8 sm:gap-10"
+              >
+                {/* Diamond node */}
+                <div className="hidden sm:flex flex-col items-center flex-shrink-0">
+                  <div
+                    className="w-6 h-6 bg-[#b6ff00] mt-1 flex-shrink-0"
+                    style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
+                  />
+                </div>
+
+                {/* Card */}
+                <div className="flex-1 bg-[#111111] border border-white/10 p-6 hover:border-[#b6ff00]/40 transition-all duration-300 group relative">
+                  {/* Corner brackets */}
+                  <span className="absolute top-[-2px] left-[-2px] w-4 h-4 border-t-2 border-l-2 border-[#b6ff00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute top-[-2px] right-[-2px] w-4 h-4 border-t-2 border-r-2 border-[#b6ff00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute bottom-[-2px] left-[-2px] w-4 h-4 border-b-2 border-l-2 border-[#b6ff00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <span className="absolute bottom-[-2px] right-[-2px] w-4 h-4 border-b-2 border-r-2 border-[#b6ff00] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                  {/* Position & company */}
+                  <h3 className="text-[#b6ff00] font-bold text-lg tracking-wide mb-1">
+                    {exp.position.toUpperCase()}
                   </h3>
-                  <div className="text-[#b6ff00] font-semibold mb-2">
-                    {exp.company}
-                  </div>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
+                  <p className="text-white font-mono text-sm mb-1">{exp.company}</p>
+
+                  {/* Period & location */}
+                  <div className="flex flex-wrap gap-4 text-xs text-gray-400 font-mono mb-4">
+                    <div className="flex items-center gap-1">
+                      <Calendar className="w-3 h-3" />
                       <span>{exp.period}</span>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <MapPin className="w-4 h-4" />
+                    <div className="flex items-center gap-1">
+                      <MapPin className="w-3 h-3" />
                       <span>{exp.location}</span>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              {/* Description */}
-              <p className="text-gray-300 mb-4">{exp.description}</p>
+                  {/* Achievements */}
+                  <ul className="space-y-2 mb-5">
+                    {exp.achievements.map((item, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
+                        <span className="text-[#b6ff00] font-bold mt-0.5 flex-shrink-0">&gt;</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
 
-              {/* Achievements */}
-              <div className="mb-4">
-                <h4 className="text-sm font-semibold text-white mb-2">
-                  Key Achievements:
-                </h4>
-                <ul className="space-y-2">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i} className="flex items-start space-x-2">
-                      <span className="text-[#b6ff00] mt-1">▹</span>
-                      <span className="text-gray-300 text-sm">
-                        {achievement}
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {exp.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 border border-white/20 text-white/80 text-xs font-mono bg-black/30 hover:border-[#b6ff00]/50 hover:text-[#b6ff00] transition-colors duration-200"
+                      >
+                        {tech.toUpperCase()}
                       </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2">
-                {exp.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-black/50 border border-white/10 rounded-md text-xs text-gray-300"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }

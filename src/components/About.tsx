@@ -26,22 +26,20 @@ export default function About() {
         <div className="space-y-6">
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p>
-              I'm a passionate software engineer with over 5 years of experience
-              in building scalable web applications and cloud solutions. My
+              I'm a passionate software engineer with over 1 year of experience
+              in building scalable web applications. My
               journey in tech started with a curiosity for how things work, and
               it's evolved into a career focused on creating meaningful digital
               experiences.
             </p>
             <p>
               I specialize in full-stack development using modern technologies
-              like React, Next.js, Node.js, and various cloud platforms. I
+              like React, Next.js, Node.js, MongoDB, Postgress. I
               believe in writing clean, maintainable code and following best
               practices to deliver high-quality solutions.
             </p>
             <p>
-              When I'm not coding, you can find me exploring new technologies,
-              contributing to open-source projects, or sharing my knowledge with
-              the developer community through blog posts and mentoring.
+              When I'm not coding, you can find me exploring new technologies, solving coding problems, reading books, traveling, playing cricket, or contributing to open-source projects.
             </p>
           </div>
 
@@ -67,10 +65,10 @@ export default function About() {
             </h3>
             <div className="space-y-3">
               {[
-                { label: "Location", value: "San Francisco, CA" },
-                { label: "Email", value: "contact@example.com" },
+                { label: "Location", value: "Dhaka, Bangladesh" },
+                { label: "Email", value: "durjoykundu07@gmail.com" },
                 { label: "Education", value: "B.S. Computer Science" },
-                { label: "Experience", value: "5+ Years" },
+                { label: "Experience", value: "1+ Years" },
                 { label: "Focus", value: "Full-Stack Development" },
               ].map((fact) => (
                 <div

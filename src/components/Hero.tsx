@@ -135,7 +135,7 @@ export default function Hero() {
               </div>
               <div className="space-y-1">
                 <div className="text-2xl sm:text-3xl font-bold text-[#b6ff00]">
-                  5+
+                  10+
                 </div>
                 <div className="text-xs sm:text-sm text-gray-400">
                   Projects Done
@@ -143,7 +143,7 @@ export default function Hero() {
               </div>
               <div className="space-y-1">
                 <div className="text-2xl sm:text-3xl font-bold text-[#b6ff00]">
-                  5+
+                  10+
                 </div>
                 <div className="text-xs sm:text-sm text-gray-400">
                   Technologies
@@ -166,12 +166,12 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Hidden on mobile */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          className="hidden md:flex absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
           <div className="flex flex-col items-center space-y-2">
             <span className="text-xs text-gray-500 font-mono">SCROLL</span>

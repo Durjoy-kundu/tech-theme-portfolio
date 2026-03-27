@@ -168,28 +168,33 @@ const DHAKA_LNG = 90.4152;
 
 export default function Globe3D() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [showCard, setShowCard] = useState(false);
+  const [containerWidth, setContainerWidth] = useState(550);
 
+  // Track container width for dynamic globe sizing
   useEffect(() => {
-    if (!canvasRef.current) return;
-
-    let phi = 0;
-    let width = 0;
-
-    const onResize = () => {
-      if (canvasRef.current) {
-        width = canvasRef.current.offsetWidth;
+    const updateWidth = () => {
+      if (containerRef.current) {
+        setContainerWidth(containerRef.current.offsetWidth);
       }
     };
-    window.addEventListener("resize", onResize);
-    onResize();
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  useEffect(() => {
+    if (!canvasRef.current || containerWidth === 0) return;
+
+    let phi = 0;
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: width * 2,
-      height: width * 2,
+      width: containerWidth * 2,
+      height: containerWidth * 2,
       phi: 0,
-      theta: 0.15, // Adjusted tilt
+      theta: 0.15,
       dark: 1,
       diffuse: 1.2,
       mapSamples: 16000,
@@ -197,88 +202,86 @@ export default function Globe3D() {
       baseColor: [0.1, 0.1, 0.1],
       markerColor: [0, 1, 1],
       glowColor: [0.1, 0.1, 0.1],
-      offset: [0, 0], // Center the globe to stop clipping
+      offset: [0, 0],
       markers: [{ location: [DHAKA_LAT, DHAKA_LNG], size: 0.1 }],
       onRender: (state) => {
         state.phi = phi;
         phi += 0.008;
 
-        // FIXED MATH FOR DHAKA
-        // 1. Convert Longitude to Radians
         const lngRad = (DHAKA_LNG * Math.PI) / 180;
-        
-        // 2. The globe in Cobe rotates such that the "front" (0 radians) 
-        // faces the camera. We check if (phi + lngRad) completes a circle.
         const currentRotation = (phi + lngRad) % (2 * Math.PI);
-        
-        // 3. We want to show the card when the dot is at the center front (approx 4.7 radians or 1.5 radians depending on direction)
-        // For Dhaka, it hits the "sweet spot" near 4.8 radians.
         const isFacing = currentRotation > 4.5 && currentRotation < 5.2;
-
         setShowCard(isFacing);
       },
     });
 
-    return () => {
-      globe.destroy();
-      window.removeEventListener("resize", onResize);
-    };
-  }, []);
+    return () => globe.destroy();
+  }, [containerWidth]);
 
   return (
-    // Set fixed height container to avoid clipping
-    <div className="relative w-full h-[600px] flex items-center justify-center overflow-hidden">
-      
-      {/* Globe Canvas Container */}
-      <div className="relative w-[550px] h-[550px]">
+    <div className="relative w-full flex items-center justify-center">
+      {/* Globe Canvas — aspect-square, max 550px */}
+      <div
+        ref={containerRef}
+        className="relative w-full max-w-[550px] aspect-square"
+      >
         <canvas
           ref={canvasRef}
-          style={{
-            width: "100%",
-            height: "100%",
-            contain: "layout paint",
-          }}
+          style={{ width: "100%", height: "100%", contain: "layout paint" }}
         />
+
+        {/* Location Card */}
+        <AnimatePresence>
+          {showCard && (
+            <motion.div
+              // Mobile: slide up from bottom-center; Desktop: slide in from right
+              initial={{ y: 20, opacity: 0, x: 0 }}
+              animate={{ y: 0, opacity: 1, x: 0 }}
+              exit={{ y: 20, opacity: 0, x: 0 }}
+              className={
+                "absolute z-30 " +
+                // Mobile — bottom center
+                "bottom-10 left-1/2 -translate-x-1/2 " +
+                // Desktop — top right, reset mobile transforms
+                "md:bottom-auto md:top-10 md:right-10 md:left-auto md:translate-x-0"
+              }
+            >
+              <div
+                className="bg-black/80 backdrop-blur-sm border border-lime-400 md:border-2 rounded-sm overflow-hidden"
+                style={{
+                  boxShadow:
+                    "0 0 15px rgba(163,230,53,0.35), 0 0 30px rgba(163,230,53,0.15)",
+                }}
+              >
+                {/* Header */}
+                <div className="bg-lime-400 px-2 py-0.5 md:px-3 md:py-1 flex items-center gap-1 md:gap-2">
+                  <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-black rounded-full animate-pulse" />
+                  <span className="text-black font-black font-mono text-[8px] md:text-[10px] tracking-tighter">
+                    LOCATION
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="p-2 md:p-3 flex items-center gap-2 md:gap-3">
+                  <div className="w-10 h-10 md:w-14 md:h-14 border border-zinc-700 grayscale flex-shrink-0 overflow-hidden">
+                    <img
+                      src="/profile.jpeg"
+                      alt="Profile"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-lime-400 font-mono text-[9px] md:text-xs">
+                    <p className="flex items-center gap-1 whitespace-nowrap">
+                      <span className="w-1 h-1 md:w-1.5 md:h-1.5 bg-lime-400 rounded-full animate-pulse" />
+                      Dhaka, Bangladesh
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-
-      {/* Animated Location Card - Forced to Top Right */}
-      <AnimatePresence>
-        {showCard && (
-          <motion.div
-            initial={{ x: 50, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 50, opacity: 0 }}
-            className="absolute top-10 right-10 z-30"
-          >
-            <div className="bg-black border-2 border-lime-400 rounded-sm overflow-hidden shadow-[0_0_25px_rgba(163,230,53,0.4)]">
-              {/* Header */}
-              <div className="bg-lime-400 px-3 py-1 flex items-center gap-2">
-                <div className="w-2 h-2 bg-black rounded-full animate-pulse" />
-                <span className="text-black font-black font-mono text-[10px] tracking-tighter">
-                  LOCATION
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="p-3 flex items-center gap-3">
-                <div className="w-16 h-16 border border-zinc-800 grayscale">
-                  <img
-                    src="/profile.jpg"
-                    alt="Profile"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="text-lime-400 font-mono text-xs">
-                  <p className="flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-lime-400 rounded-full" />
-                    Dhaka, Bangladesh
-                  </p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
