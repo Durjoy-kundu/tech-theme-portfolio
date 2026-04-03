@@ -18,7 +18,7 @@ export default function Home() {
       <Experience />
       <Projects />
       <Certifications />
-      <Achievements />
+      {/* <Achievements /> */}
       <Contact />
     </main>
   );

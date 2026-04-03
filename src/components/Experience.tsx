@@ -8,7 +8,7 @@ import { Calendar, MapPin } from "lucide-react";
 const experiences = [
   {
     company: "Green Compare Ltd",
-    position: "Junior Software Engineer",
+    position: "Software Developer",
     period: "Nov 2025 - Present",
     location: "Dhaka, Bangladesh",
     type: "Full-time",
@@ -35,14 +35,13 @@ export default function Experience() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="mb-12 flex items-center gap-6"
+          className="mb-12"
         >
           <h2 className="text-4xl sm:text-5xl font-bold tracking-wide whitespace-nowrap">
             <span className="text-white">MISSION </span>
             <span className="text-[#b6ff00]">LOG</span>
           </h2>
-          {/* Horizontal dashed line */}
-          <div className="flex-1 border-t-2 border-dashed border-[#b6ff00]/50" />
+          <div className="mt-2 h-[3px] w-16 bg-[#b6ff00]" />
         </motion.div>
 
         {/* Timeline */}

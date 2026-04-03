@@ -3,18 +3,32 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import SectionWrapper from "./SectionWrapper";
 
 export default function About() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const headingRef = useRef(null);
+  const headingInView = useInView(headingRef, { once: true, margin: "-100px" });
 
   return (
-    <SectionWrapper
-      id="about"
-      title="ABOUT ME"
-      subtitle="Software engineer with a passion for creating innovative solutions"
-    >
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          ref={headingRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={headingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+          className="mb-12"
+        >
+          <h2 className="text-4xl sm:text-5xl font-bold tracking-wide whitespace-nowrap">
+            <span className="relative inline-block text-white">
+              ABOUT{" "}
+              <span className="absolute left-0 -bottom-2 h-[3px] w-full bg-[#b6ff00]" />
+            </span>
+            <span className="text-[#b6ff00]"> ME</span>
+          </h2>
+        </motion.div>
+
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
@@ -95,6 +109,7 @@ export default function About() {
           </div>
         </div>
       </motion.div>
-    </SectionWrapper>
+      </div>
+    </section>
   );
 }

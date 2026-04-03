@@ -218,10 +218,10 @@ export default function Contact() {
         className="mt-20 pt-8 border-t border-white/10 text-center"
       >
         <p className="text-gray-400 text-sm">
-          © {new Date().getFullYear()} Badhan Sen. Built with Next.js, TypeScript & Tailwind CSS
+          © {new Date().getFullYear()} Durjoy Kundu. All rights reserved.
         </p>
         <p className="text-gray-500 text-xs mt-2">
-          Designed & Developed with <span className="text-[#b6ff00]">♥</span> in San Francisco
+          Designed & Developed with <span className="text-[#b6ff00]">♥</span> by Durjoy 
         </p>
       </motion.div>
     </SectionWrapper>
