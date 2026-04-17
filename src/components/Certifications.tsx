@@ -48,8 +48,13 @@ export default function Certifications() {
   return (
     <SectionWrapper
       id="certifications"
-      title="CERTIFICATIONS"
       subtitle="Professional certifications and credentials"
+      customTitle={
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <span className="text-white">CERTIFI</span>
+          <span style={{ color: "#9AE600" }}>CATIONS</span>
+        </h2>
+      }
     >
       <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         {certifications.map((cert, index) => (

@@ -55,8 +55,13 @@ export default function Achievements() {
   return (
     <SectionWrapper
       id="achievements"
-      title="ACHIEVEMENTS"
       subtitle="Milestones and recognitions along the journey"
+      customTitle={
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <span className="text-white">ACHIEVE</span>
+          <span style={{ color: "#9AE600" }}>MENTS</span>
+        </h2>
+      }
     >
       <div ref={ref} className="space-y-12">
         {/* Main Achievements */}

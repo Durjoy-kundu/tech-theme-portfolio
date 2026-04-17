@@ -7,8 +7,9 @@ import { useRef } from "react";
 interface SectionWrapperProps {
   children: React.ReactNode;
   id: string;
-  title: string;
+  title?: string;
   subtitle?: string;
+  customTitle?: React.ReactNode;
 }
 
 export default function SectionWrapper({
@@ -16,6 +17,7 @@ export default function SectionWrapper({
   id,
   title,
   subtitle,
+  customTitle,
 }: SectionWrapperProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -33,10 +35,13 @@ export default function SectionWrapper({
           transition={{ duration: 0.5 }}
           className="mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold mb-4">
-            <span className="text-[#b6ff00]">//</span>{" "}
-            <span className="gradient-text">{title}</span>
-          </h2>
+          {customTitle ? (
+            customTitle
+          ) : (
+            <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+              <span className="gradient-text">{title}</span>
+            </h2>
+          )}
           {subtitle && (
             <p className="text-gray-400 text-lg max-w-2xl">{subtitle}</p>
           )}

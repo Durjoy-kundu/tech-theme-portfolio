@@ -8,16 +8,16 @@ import { Calendar, MapPin } from "lucide-react";
 const experiences = [
   {
     company: "Green Compare Ltd",
-    position: "Junior Software Engineer",
+    position: "Software Developer",
     period: "Nov 2025 - Present",
     location: "Dhaka, Bangladesh",
     type: "Full-time",
     description:
-      "Leading development of cloud-native applications using microservices architecture. Mentoring junior developers and establishing best practices.",
+      "Contributed to 10+ projects, developing high-performance Next.js frontends and AI-driven interfaces with seamless API integration to deliver scalable, pixel-perfect experiences.",
     achievements: [
-      "Architected and deployed scalable microservices handling 1M+ requests/day",
-      "Reduced infrastructure costs by 40% through optimization",
-      "Led team of 5 developers in agile environment",
+      "Architected and deployed responsive web applications using Next.js and Tailwind CSS, ensuring 95+ Core Web Vitals scores.",
+      "Optimized frontend performance and asset loading, reducing initial page load times by 40% across key projects.",
+      "Transformed complex Figma designs into pixel-perfect, reusable React component libraries for scalable development.",
     ],
     technologies: ["React", "Next.js", "React Native", "Docker", "PostgreSQL"],
   },

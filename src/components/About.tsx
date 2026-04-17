@@ -14,16 +14,24 @@ export default function About() {
       id="about"
       title="ABOUT ME"
       subtitle="Software engineer with a passion for creating innovative solutions"
+      customTitle={
+        <div className="mb-4">
+          <h2 className="text-4xl sm:text-5xl font-bold">
+            <span className="text-white">ABOUT </span>
+            <span className="text-[#b6ff00]">ME</span>
+          </h2>
+        </div>
+      }
     >
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.6 }}
-        className="grid lg:grid-cols-2 gap-12"
+        className="grid lg:grid-cols-2 gap-12 items-stretch"
       >
         {/* Left - Bio */}
-        <div className="space-y-6">
+        <div className="flex flex-col justify-between space-y-6">
           <div className="space-y-4 text-gray-300 leading-relaxed">
             <p>
               I'm a passionate software engineer with over 1 year of experience
@@ -58,7 +66,7 @@ export default function About() {
         </div>
 
         {/* Right - Quick Facts */}
-        <div className="space-y-6">
+        <div className="flex flex-col justify-between space-y-6">
           <div className="bg-white/5 border border-white/10 rounded-xl p-6 space-y-4 hover:border-[#b6ff00]/30 transition-all duration-300">
             <h3 className="text-xl font-semibold text-[#b6ff00] mb-4">
               Quick Facts

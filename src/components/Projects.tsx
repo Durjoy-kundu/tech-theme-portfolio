@@ -8,35 +8,35 @@ import SectionWrapper from "./SectionWrapper";
 
 const projects = [
   {
-    title: "Mobile AI",
-    category: "MOBILE APPLICATION",
+    title: "AI Travel Planner",
+    category: "Full-Stack Web Application",
     description:
-      "AI-powered mobile app that provides personalized recommendations using machine learning algorithms. Built with React Native and TensorFlow.",
-    image: "🤖",
-    technologies: ["React Native", "TensorFlow", "Node.js", "MongoDB"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "An AI-powered travel planner built with Next.js and Tailwind CSS, featuring Clerk authentication and smart itineraries via OpenAI and Google Places.",
+    image: "/projects/1.png",
+    technologies: ["Next.js", "Tailwind CSS", "OpenAI", "Convex DB"],
+    github: "https://github.com/Durjoy-kundu/ai-tour-planner",
+    demo: "https://ai-tour-planner-neon.vercel.app/",
     featured: true,
   },
   {
     title: "E-commerce Platform",
     category: "WEB APPLICATION",
     description:
-      "Full-featured e-commerce platform with payment integration, inventory management, and real-time analytics dashboard.",
-    image: "🛍️",
-    technologies: ["Next.js", "Stripe", "PostgreSQL", "Redis"],
-    github: "https://github.com",
-    demo: "https://demo.com",
+      "Full-featured e-commerce platform with filters, search functionality, and real-time analytics dashboard.",
+    image: "/projects/2.png",
+    technologies: ["Next.js", "Tailwind CSS", "MongoDB", ],
+    github: "https://github.com/Durjoy-kundu/mmkbazar",
+    demo: "https://mmkbazar.vercel.app/",
     featured: true,
   },
   {
-    title: "SaaS Dashboard",
-    category: "ENTERPRISE SOFTWARE",
+    title: "Portfolio Website",
+    category: "Frontend Web Application",
     description:
-      "Modern SaaS dashboard with multi-tenancy support, role-based access control, and comprehensive analytics.",
-    image: "📊",
-    technologies: ["React", "Express", "AWS", "Docker"],
-    github: "https://github.com",
+      "Modern portfolio website showcasing projects, skills, and achievements with a responsive design and interactive elements.",
+    image: "/projects/3.png",
+    technologies: ["Next.js", "Tailwind CSS", "Framer Motion", ],
+    github: "https://github.com/Durjoy-kundu/tech-theme-portfolio",
     demo: "https://demo.com",
     featured: true,
   },
@@ -82,8 +82,13 @@ export default function Projects() {
   return (
     <SectionWrapper
       id="projects"
-      title="SELECTED WORKS"
       subtitle="Showcasing innovative solutions and creative implementations"
+      customTitle={
+        <h2 className="text-4xl sm:text-5xl font-bold mb-4">
+          <span className="text-white">SELECTED </span>
+          <span style={{ color: "#9AE600" }}>WORKS</span>
+        </h2>
+      }
     >
       <div ref={ref} className="space-y-6">
         {/* Featured Projects Grid */}
@@ -100,9 +105,13 @@ export default function Projects() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group bg-white/5 border border-white/10 rounded-xl overflow-hidden hover:border-[#b6ff00]/30 transition-all duration-300"
               >
-                {/* Project Image/Icon */}
-                <div className="aspect-video bg-gradient-to-br from-[#b6ff00]/20 to-transparent flex items-center justify-center text-6xl">
-                  {project.image}
+                {/* Project Image */}
+                <div className="aspect-video overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
 
                 {/* Content */}
